@@ -39,10 +39,10 @@ var book5_output = 'Title: Vonk' + '\n' + 'Author: Harry Mulisch' + '\n' + 'Pric
 program
   .version('0.1')
   // Options for command line input to search the database
-  .option('-title, --title [code]', 'Title', 'empty')
-  .option('-author, --author [code]', 'Author name', 'empty')
-  .option('-price, --price [code]', 'Price', 'empty')
-  .option('-kind, --kind [code]', 'Kind of book', /^(Paperback|Hardcover)$/i)
+  .option('-title, --title [code]', 'search by title of a book', 'empty')
+  .option('-author, --author [code]', 'search by author name', 'empty')
+  .option('-price, --price [code]', 'search by price of a book', 'empty')
+  .option('-kind, --kind [code]', 'search by kind of book, paperback or hardcover', /^(Paperback|Hardcover)$/i)
   .parse(process.argv);
 
 // This switch function enables search by title of a book
