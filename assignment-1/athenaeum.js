@@ -28,7 +28,7 @@ var book3_author = "Kees Cools";
 var book3_price = "29.95";
 var book3_kind = "Paperback";
 var book3_output = 'Title: Controle is goed vertrouwen nog beter' + '\n' +
-  'Author: Kees Cools' + '\n' + 'Price: 29,95' + '\n' + 'Kind: Paperback';
+  'Author: Kees Cools' + '\n' + 'Price: 29.95' + '\n' + 'Kind: Paperback';
 
 var book4_title = "De Nederlandse Revolutie";
 var book4_author = "19.90";
