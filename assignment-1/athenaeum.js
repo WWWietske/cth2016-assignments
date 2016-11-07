@@ -56,10 +56,10 @@ program
     /^(Paperback|Hardcover)$/i)
   .parse(process.argv);
 
-// this switch function enables search by title of a book
+// this switch statement enables search by title of a book
 switch(program.title)
 {
-    // match input to title of one of the books in the database
+    // match input to a title of one of the books in the database
     case book1_title:
         console.log(book1_output);
         break;
@@ -77,9 +77,10 @@ switch(program.title)
         break;
 }
 
-// this switch function enables search by author of a book
+// this switch statement enables search by author of a book
 switch(program.author)
 {
+    // match input to an author of one of the books in the database
     case book1_author:
         console.log(book1_output);
         break;
@@ -97,9 +98,10 @@ switch(program.author)
         break;
 }
 
-// this switch function enables search by price of a book
+// this switch statement enables search by price of a book
 switch(program.price)
 {
+    // match input to a price of one of the books in the database
     case book1_price:
         console.log(book1_output);
         break;
@@ -117,9 +119,10 @@ switch(program.price)
         break;
 }
 
-// this switch function enables search by kind of a book
+// this switch statement enables search by kind of a book
 switch(program.kind)
 {
+    // match input to the kind of books in the database
     case ('Paperback'):
         console.log(book1_output + '\n' + book2_output + '\n' + book3_output
           + '\n' + book4_output + '\n' + book5_output);
