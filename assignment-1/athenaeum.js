@@ -11,39 +11,39 @@ var program = require('commander');
 // database of the five books and the output message for each book
 var book1_title = "Why Grow Up";
 var book1_author = "Susan Neiman";
-var book1_price = "16,95";
+var book1_price = "16.95";
 var book1_kind = "Paperback";
 var book1_output = 'Title: Why Grow Up?' + '\n' + 'Author: Susan Neiman' +
-  '\n' + 'Price: 16,95' + '\n' + 'Kind: Paperback';
+  '\n' + 'Price: 16.95' + '\n' + 'Kind: Paperback';
 
 var book2_title = "Psychologie voor de praktijk";
 var book2_author = "Jakop Rigter";
-var book2_price = "29,50";
+var book2_price = "29.50";
 var book2_kind = "Paperback";
 var book2_output = 'Title: Psychologie voor de praktijk' + '\n' +
-  'Author: Jakop Rigter' + '\n' + 'Price: 29,50' + '\n' + 'Kind: Paperback';
+  'Author: Jakop Rigter' + '\n' + 'Price: 29.50' + '\n' + 'Kind: Paperback';
 
 var book3_title = "Controle is goed vertrouwen nog beter";
 var book3_author = "Kees Cools";
-var book3_price = "29,95";
+var book3_price = "29.95";
 var book3_kind = "Paperback";
 var book3_output = 'Title: Controle is goed vertrouwen nog beter' + '\n' +
   'Author: Kees Cools' + '\n' + 'Price: 29,95' + '\n' + 'Kind: Paperback';
 
 var book4_title = "De Nederlandse Revolutie";
-var book4_author = "19,90";
+var book4_author = "19.90";
 var book4_price = "Joost Rosendaal";
 var book4_kind = "Paperback";
 var book4_output = 'Title: De Nederlandse revolutie' + '\n' +
-  'Author: Joost Rosendaal' + '\n' + 'Price: 19,90' + '\n' +
+  'Author: Joost Rosendaal' + '\n' + 'Price: 19.90' + '\n' +
   'Kind: Paperback';
 
 var book5_title = "Vonk";
 var book5_author = "Harry Mulisch";
-var book5_price = "10,00";
+var book5_price = "10.00";
 var book5_kind = "Paperback";
 var book5_output = 'Title: Vonk' + '\n' + 'Author: Harry Mulisch' +
-  '\n' + 'Price: 10,00' + '\n' + 'Kind: Paperback';
+  '\n' + 'Price: 10.00' + '\n' + 'Kind: Paperback';
 
 // initialise program (aka commander)
 program
