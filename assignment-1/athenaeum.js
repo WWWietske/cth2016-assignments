@@ -1,11 +1,14 @@
-// Command line interface for a "fake" bookstore
-// Wietske Dotinga - 10781889
-// Coding the Humanities
-// 8 November 2016
+/*
+    file:   athenaeum.js
+    desc:   Command line interface for a "fake" bookstore
+    author: Wietske Dotinga
+    date:   08/11/2016
+*/
 
+// import 'commander' (https://www.npmjs.com/package/commander)
 var program = require('commander');
 
-// information of the five books and the output message for each book
+// database of the five books and the output message for each book
 var book1_title = "Why Grow Up";
 var book1_author = "Susan Neiman";
 var book1_price = "16,95";
@@ -42,9 +45,10 @@ var book5_kind = "Paperback";
 var book5_output = 'Title: Vonk' + '\n' + 'Author: Harry Mulisch' +
   '\n' + 'Price: 10,00' + '\n' + 'Kind: Paperback';
 
+// initialise program (aka commander)
 program
   .version('0.1')
-  // options for command line input to search the database
+  // add options for command line input to search the database
   .option('-title, --title [code]', 'search by title of a book', 'empty')
   .option('-author, --author [code]', 'search by author name', 'empty')
   .option('-price, --price [code]', 'search by price of a book', 'empty')
@@ -55,6 +59,7 @@ program
 // this switch function enables search by title of a book
 switch(program.title)
 {
+    // match input to title of one of the books in the database
     case book1_title:
         console.log(book1_output);
         break;
