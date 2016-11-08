@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*
     file:   athenaeum.js
     desc:   Command line interface for a "fake" bookstore
@@ -268,4 +267,3 @@ switch(program.kind)
         console.log('Currently no hardcover books in the database');
         break;
 }
->>>>>>> ddc4ded4dc1a533948aa82b1b97c876900f36728
