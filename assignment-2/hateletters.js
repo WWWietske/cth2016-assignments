@@ -1,6 +1,6 @@
 /*
-	file: 	loveletter.js
-	desc: 	simple script that generates a (skeleton) letter
+	file: 	hateletters.js
+	desc: 	simple script that generates a (skeleton) hate letter
 			based on Christopher Stratchey's Love Letter as
 			analysed by Noah Wardrip-Fruin in "Digital Media Archeology"
 	author: Wietske Dotinga
@@ -25,11 +25,16 @@ program
   .parse(process.argv);
 
 // determiner + adjective + noun + adverb + verb + determiner + adjective + noun
-const first = ['DARLING', 'DEAR', 'HONEY', 'JEWEL'];
+const first = ['HELLO', 'DEAR', 'HI', 'TO'];
 
-const second = ['DUCK', 'LOVE', 'MOPPET', 'SWEETHEART'];
+const second = ['ASSHOLE', 'TWAT', 'BITCH', 'CUNT'];
 
-const adjectives = ['ADORABLE', 'AFFECTIONATE', 'AMOROUS', 'ANXIOUS', 'ARDENT', 'AVID', 'BREATHLESS', 'BURNING', 'COVETOUS', 'CRAVING', 'CURIOUS', 'DARLING', 'DEAR', 'DEVOTED', 'EAGER', 'EROTIC', 'FERVENT', 'FOND', 'IMPATIENT', 'KEEN', 'LITTLE', 'LOVEABLE', 'LOVESICK', 'LOVING', 'PASSIONATE', 'PRECIOUS', 'SWEET', 'SYMPATHETIC', 'TENDER', 'UNSATISFIED', 'WISTFUL'];
+const adjectives = ['AWFUL', 'DESPICABLE', 'DISGUSTING', 'DISTURBING',
+  'HEARTLESS', 'INADEQUATE', 'REPULSIVE', 'UNWORTHY', 'UNSATISFIED', 'UNCARING',
+  'UNFORGIVING', 'OUTRAGEOUS', 'PETTY', 'SHALLOW', 'WICKED', 'UNTRUSTWORTHY',
+  'INCONSISTENT', 'PREJUDICED', 'IMPATIENT', 'PESSIMISTIC', 'FRUSTRATING',
+  'DISAPPOINTING', 'INDIFFERENT', 'RUSHED', 'IRRELEVANT', 'USELESS',
+  'INEXPERIENCED', 'UNSYMPATHETIC', 'LIMITED', 'DISINTERESTED', 'MEDIOCRE'];
 
 const nouns = ['ADORATION', 'AFFECTION', 'AMBITION', 'APPETITE', 'ARDOUR', 'CHARM', 'DESIRE', 'DEVOTION', 'EAGERNESS', 'ENCHANTMENT', 'ENTHUSIASM', 'FANCY', 'FELLOW FEELING', 'FERVOUR', 'FONDNESS', 'HEART', 'HUNGER', 'INFATUATION', 'LIKING', 'LONGING', 'LOVE', 'LUST', 'PASSION', 'RAPTURE', 'SYMPATHY', 'TENDERNESS', 'THIRST', 'WISH', 'YEARNING'];
 
@@ -49,7 +54,7 @@ var character_amount = program.words;
 *	@return {Object} choice
 */
 function choice(array) {
-  var index = chance.natural({'min': 0, 'max': array.length});
+  var index = chance.natural({'min': 0, 'max': array.length - 1});
   return array[index];
 }
 
@@ -83,7 +88,7 @@ function short() {
 *	@return {String} sentence
 */
 function long() {
-  return 'MY ' + maybe(adjectives) + ' ' + choice(nouns) + ' ' + maybe(adverbs)
+  return choice(determiners) + ' ' + maybe(adjectives) + ' ' + choice(nouns) + ' ' + maybe(adverbs)
   + ' ' + choice(verbs) + ' ' + 'YOUR' + ' ' + maybe(adjectives) + ' ' +
   choice(nouns) + '. ';
 }
