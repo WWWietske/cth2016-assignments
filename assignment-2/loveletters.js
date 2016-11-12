@@ -2,6 +2,18 @@ var chance = require('chance').Chance();
 
 var wrap = require('word-wrap');
 
+// import 'commander' (https://www.npmjs.com/package/commander)
+var program = require('commander');
+
+// initialise program (aka commander)
+program
+  .version('0.1')
+  // add options for command line input to search the database
+  .option('-w, --words [code]', 'input width of sentences', 'empty')
+  .option('-s, --sentence [code]', 'input amount of sentences', 'empty')
+  .parse(process.argv);
+
+// determiner + adjective + noun + adverb + verb + determiner + adjective + noun
 const first = ['DARLING', 'DEAR', 'HONEY', 'JEWEL'];
 
 const second = ['DUCK', 'LOVE', 'MOPPET', 'SWEETHEART'];
@@ -14,8 +26,13 @@ const adverbs = ['AFFECTIONATELY', 'ANXIOUSLY', 'ARDENTLY', 'AVIDLY', 'BEAUTIFUL
 
 const verbs = ['ADORES', 'ATTRACTS', 'CARES FOR', 'CHERISHES', 'CLINGS TO', 'DESIRES','HOLDS DEAR', 'HOPES FOR', 'HUNGERS FOR', 'IS WEDDED TO', 'LIKES', 'LONGS FOR', 'LOVES', 'LUSTS AFTER', 'PANTS FOR', 'PINES FOR', 'PRIZES', 'SIGHS FOR', 'TEMPTS', 'THIRSTS FOR', 'TREASURES', 'WANTS', 'WISHES', 'WOOS', 'YEARNS FOR'];
 
+const determiners = ['MY', 'YOUR', 'THEIR'];
+
+var sentence_amount = program.sentence;
+var words_amount = program.words;
+
 function choice(array) {
-  var index in chance.natural({'min': 0, 'max': array.length});
+  var index = chance.natural({'min': 0, 'max': array.length});
   return array[index];
 }
 
@@ -34,12 +51,12 @@ function short() {
 
 function long() {
   return 'MY ' + maybe(adjectives) + ' ' + choice(nouns) + ' ' + maybe(adverbs)
-  + ' ' + choice(verbs) + ' ' + 'YOUR' + maybe(adjectives) + choice(nouns) + '.';
+  + ' ' + choice(verbs) + ' ' + 'YOUR' + ' ' + maybe(adjectives) + ' ' + choice(nouns) + '.';
 }
 
 console.log("\n\n\n\n\n\n");
 
-for(var i = 0, i < 5, i++) {
+for(var i = 0; i < sentence_amount; i++) {
   console.log(long());
 }
 
