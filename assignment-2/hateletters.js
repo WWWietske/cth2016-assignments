@@ -24,7 +24,7 @@ program
   .option('-s, --sentence [code]', 'input amount of sentences', 'empty')
   .parse(process.argv);
 
-// determiner + adjective + noun + adverb + verb + determiner + adjective + noun
+// vocabulary database with "negative" words
 const first = ['HELLO', 'DEAR', 'HI', 'TO'];
 
 const second = ['ASSHOLE', 'TWAT', 'BITCH', 'CUNT'];
@@ -43,15 +43,21 @@ const nouns = ['PAIN', 'FEAR', 'DEATH', 'REVENGE', 'DISEASE', 'INJURY',
   'RAPTURE', 'MANIPULATION', 'MISCALUCATION', 'MISJUDGEMENT', 'MISTAKE',
   'PROBLEM'];
 
-const adverbs = ['AFFECTIONATELY', 'ANXIOUSLY', 'ARDENTLY', 'AVIDLY', 'BEAUTIFULLY', 'BREATHLESSLY', 'BURNINGLY', 'COVETOUSLY', 'CURIOUSLY', 'DEVOTEDLY', 'EAGERLY', 'FERVENTLY', 'FONDLY', 'IMPATIENTLY', 'KEENLY', 'LOVINGLY', 'PASSIONATELY', 'SEDUCTIVELY', 'TENDERLY', 'WINNINGLY', 'WISTFULLY'];
+const adverbs = ['BADLY', 'ANXIOUSLY', 'LAZILY', 'SELFISHLY', 'SELDOM',
+  'MORTALLY', 'MADLY', 'RUDELY', 'SLOWLY', 'ANGRILY', 'BOLDLY', 'ACCIDENTALLY',
+  'ALWAYS', 'IMPATIENTLY', 'STERNLY', 'POORLY', 'RARELY', 'WILDLY',
+  'OBNOXIOUSLY', 'FOOLISHLY', 'DOUBTFULLY'];
 
-const verbs = ['ADORES', 'ATTRACTS', 'CARES FOR', 'CHERISHES', 'CLINGS TO', 'DESIRES','HOLDS DEAR', 'HOPES FOR', 'HUNGERS FOR', 'IS WEDDED TO', 'LIKES', 'LONGS FOR', 'LOVES', 'LUSTS AFTER', 'PANTS FOR', 'PINES FOR', 'PRIZES', 'SIGHS FOR', 'TEMPTS', 'THIRSTS FOR', 'TREASURES', 'WANTS', 'WISHES', 'WOOS', 'YEARNS FOR'];
+const verbs = ['ATTACKS', 'AVOIDS', 'BATTLES', 'ANNOYS', 'ALERTS', 'CRAWLS',
+  'DAMAGES', 'DESTROYS', 'DOUBTS', 'DELAYS', 'ESCAPES', 'DRAINS', 'FRAMES',
+  'FOOLS', 'IRRITATES', 'KICKS', 'JUDGES', 'MURDERS', 'PREVENTS', 'OBJECTS',
+  'SHOCKS', 'STRAPS', 'SUSPECTS', 'USES', 'SUSPENDS'];
 
 const determiners = ['MY', 'YOUR', 'THEIR'];
 
 const end = ['WITH HATE', 'TALK TO YOU NEVER', 'SINCERELY', 'RELUCTANTLY'];
 
-const person = ['YOUR ENEMY'];
+const person = ['YOUR ENEMY', 'YOUR NEMESIS'];
 
 // store input of command line in variables
 var sentence_amount = program.sentence;
@@ -117,13 +123,16 @@ console.log("\n\n\n\n\n");
 // create string to save sentences created
 var text = '';
 
+// add generated greeting to text
 text += greeting() + "\n";
 
 // loop to generate the amount of sentences from the command line input
 for(var i = 0; i < sentence_amount; i++) {
+  // add generated string long to text
   text += long();
 }
 
+// add generated ending to text
 text += "\n" + ending();
 
 // wrap the text to the lenght of the characters from the command line input
