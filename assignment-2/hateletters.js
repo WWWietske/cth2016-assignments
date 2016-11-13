@@ -36,13 +36,22 @@ const adjectives = ['AWFUL', 'DESPICABLE', 'DISGUSTING', 'DISTURBING',
   'DISAPPOINTING', 'INDIFFERENT', 'RUSHED', 'IRRELEVANT', 'USELESS',
   'INEXPERIENCED', 'UNSYMPATHETIC', 'LIMITED', 'DISINTERESTED', 'MEDIOCRE'];
 
-const nouns = ['ADORATION', 'AFFECTION', 'AMBITION', 'APPETITE', 'ARDOUR', 'CHARM', 'DESIRE', 'DEVOTION', 'EAGERNESS', 'ENCHANTMENT', 'ENTHUSIASM', 'FANCY', 'FELLOW FEELING', 'FERVOUR', 'FONDNESS', 'HEART', 'HUNGER', 'INFATUATION', 'LIKING', 'LONGING', 'LOVE', 'LUST', 'PASSION', 'RAPTURE', 'SYMPATHY', 'TENDERNESS', 'THIRST', 'WISH', 'YEARNING'];
+const nouns = ['PAIN', 'FEAR', 'DEATH', 'REVENGE', 'DISEASE', 'INJURY',
+  'OCCUPATION', 'AWKWARDNESS', 'AWFULNESS', 'BACKWARDNESS', 'BREAKDOWN',
+  'BRUISE', 'BULLY', 'COMPLAINT', 'CONFESSION', 'HEART', 'HUNGER',
+  'CONFRONTATION', 'CRASH', 'CRUELTY', 'CRISIS', 'DUNGEON', 'EMERGENCY',
+  'RAPTURE', 'MANIPULATION', 'MISCALUCATION', 'MISJUDGEMENT', 'MISTAKE',
+  'PROBLEM'];
 
 const adverbs = ['AFFECTIONATELY', 'ANXIOUSLY', 'ARDENTLY', 'AVIDLY', 'BEAUTIFULLY', 'BREATHLESSLY', 'BURNINGLY', 'COVETOUSLY', 'CURIOUSLY', 'DEVOTEDLY', 'EAGERLY', 'FERVENTLY', 'FONDLY', 'IMPATIENTLY', 'KEENLY', 'LOVINGLY', 'PASSIONATELY', 'SEDUCTIVELY', 'TENDERLY', 'WINNINGLY', 'WISTFULLY'];
 
 const verbs = ['ADORES', 'ATTRACTS', 'CARES FOR', 'CHERISHES', 'CLINGS TO', 'DESIRES','HOLDS DEAR', 'HOPES FOR', 'HUNGERS FOR', 'IS WEDDED TO', 'LIKES', 'LONGS FOR', 'LOVES', 'LUSTS AFTER', 'PANTS FOR', 'PINES FOR', 'PRIZES', 'SIGHS FOR', 'TEMPTS', 'THIRSTS FOR', 'TREASURES', 'WANTS', 'WISHES', 'WOOS', 'YEARNS FOR'];
 
 const determiners = ['MY', 'YOUR', 'THEIR'];
+
+const end = ['WITH HATE', 'TALK TO YOU NEVER', 'SINCERELY', 'RELUCTANTLY'];
+
+const person = ['YOUR ENEMY'];
 
 // store input of command line in variables
 var sentence_amount = program.sentence;
@@ -74,12 +83,21 @@ function maybe(array) {
 }
 
 /**
-*	Generates a short phrase consisting of a randomly chosen
-*	adjective and noun
+*	Generates a short greeting phrase consisting of a randomly chosen
+*	greeting and word adressing someone
 *	@return {String} phrase
 */
-function short() {
+function greeting() {
   return choice(first) + ' ' + choice(second) + ',';
+}
+
+/**
+*	Generates a short ending phrase consisting of a randomly chosen
+*	ending and word adressing yourself
+*	@return {String} phrase
+*/
+function ending() {
+  return choice(end) + ',\n' + choice(person);
 }
 
 /**
@@ -88,9 +106,9 @@ function short() {
 *	@return {String} sentence
 */
 function long() {
-  return choice(determiners) + ' ' + maybe(adjectives) + ' ' + choice(nouns) + ' ' + maybe(adverbs)
-  + ' ' + choice(verbs) + ' ' + 'YOUR' + ' ' + maybe(adjectives) + ' ' +
-  choice(nouns) + '. ';
+  return choice(determiners) + ' ' + maybe(adjectives) + ' ' + choice(nouns) +
+  ' ' + maybe(adverbs) + ' ' + choice(verbs) + ' ' + choice(determiners) + ' ' +
+  maybe(adjectives) + ' ' + choice(nouns) + '. ';
 }
 
 // format the output with a header of 5 new lines
@@ -99,12 +117,14 @@ console.log("\n\n\n\n\n");
 // create string to save sentences created
 var text = '';
 
-text += short() + "\n";
+text += greeting() + "\n";
 
 // loop to generate the amount of sentences from the command line input
 for(var i = 0; i < sentence_amount; i++) {
   text += long();
 }
+
+text += "\n" + ending();
 
 // wrap the text to the lenght of the characters from the command line input
 console.log(wrap(text, {'width': character_amount}));
