@@ -59,6 +59,10 @@ const end = ['WITH HATE', 'TALK TO YOU NEVER', 'SINCERELY', 'RELUCTANTLY'];
 
 const person = ['YOUR ENEMY', 'YOUR NEMESIS'];
 
+const object = ['ME', 'YOU', 'HIM', 'HER', 'THEM'];
+
+const time = ['TODAY', 'RIGHT NOW', 'EVERY TIME', 'EVERY DAY'];
+
 // store input of command line in variables
 var sentence_amount = program.sentence;
 var character_amount = program.words;
@@ -107,14 +111,22 @@ function ending() {
 }
 
 /**
-*	Generates a sentence composed of randomly chosen
-*	adjective, noun, adverb, verb, adjective and noun
+*	Generates different sentence structures composed of randomly chosen words
 *	@return {String} sentence
 */
 function long() {
-  return choice(determiners) + ' ' + maybe(adjectives) + ' ' + choice(nouns) +
-  ' ' + maybe(adverbs) + ' ' + choice(verbs) + ' ' + choice(determiners) + ' ' +
-  maybe(adjectives) + ' ' + choice(nouns) + '. ';
+  // randomly picks one of two sentence structures
+  if(chance.bool()) {
+    // determiner-adjective-noun-adverb-verb-determiner-adjective-noun structure
+    return choice(determiners) + ' ' + maybe(adjectives) + ' ' + choice(nouns) +
+      ' ' + maybe(adverbs) + ' ' + choice(verbs) + ' ' + choice(determiners) +
+      ' ' + maybe(adjectives) + ' ' + choice(nouns) + '. ';
+  }
+  // time-determiner-noun-verb-object structure
+  else {
+    return choice(time) + ' ' + choice(determiners) + ' ' + choice(nouns) +
+      ' ' + choice(verbs) + ' ' + choice(object) + '. ';
+  }
 }
 
 // format the output with a header of 5 new lines
