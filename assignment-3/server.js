@@ -84,6 +84,7 @@ function choice(array) {
 
 /**
 * Randomly picks or not a random element from an array
+* @param {String} word
 * @param {Array} array
 * @return {Object} choice
 * @return {String} empty string
