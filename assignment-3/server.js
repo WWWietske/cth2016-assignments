@@ -33,10 +33,11 @@ var chance = require('chance').Chance(); // npm install --save chance
 const pattern_1 = ['How do you do?', 'Wazzup?'];
 const pattern_2 = ['Why?', 'No', "ok"];
 const pattern_3 = ['What should I eat for dinner?', "I don't know what to eat",
-  'Do you have any food suggestions?'];
-const pattern_4 = ['Do you know any animals?', 'What are cool animals?'];
+  'Do you have any food suggestions?', 'dinner', 'food'];
+const pattern_4 = ['Do you know any animals?', 'What are cool animals?',
+  'animals'];
 const pattern_5 = ['Why are you so mean?', "Please don't be mean",
-  "I don't like you", 'You are rude'];
+  "I don't like you", 'You are rude', 'mean', 'rude'];
 
 // arrays of words for the responses
 const ponctuation = ['.', '!', '...'];
@@ -133,15 +134,15 @@ function patter_2_answer() {
 }
 
 /**
-* Constructs a partly randomly generate answer out of two random possibilities
+* Constructs a randomly generate answer out of two random possibilities
 * @return {String}
 */
 function patter_3_answer() {
 
   switch(choice([1, 2])){
     case 1:
-      return choice(['Maybe ', 'Do you like ']) + choice(dishes) + ' with ' +
-        maybe('with', vegetables) + choice(ponctuation);
+      return choice(['Maybe ', 'Do you like ']) + choice(dishes) +
+        maybe(' with ', vegetables) + choice(ponctuation);
     case 2:
       return choice(['How would I know?', "Don't ask me!",
         "I don't want to answer your stupid questions."]);
@@ -149,7 +150,7 @@ function patter_3_answer() {
 }
 
 /**
-* Constructs a partly randomly generate answer out of three random possibilities
+* Constructs a randomly generate answer out of three random possibilities
 * @return {String}
 */
 function patter_4_answer() {
@@ -169,22 +170,13 @@ function patter_4_answer() {
 }
 
 /**
-* Constructs a partly randomly generate answer out of three random possibilities
+* Returns a random apology
 * @return {String}
 */
-function patter_4_answer() {
+function patter_5_answer() {
 
-  switch(choice([1, 2])){
-    case 1:
-      return choice(['I like ', 'I love ', 'These animals are cool ']) +
-        choice(animals) + maybe(' and ', animals) + choice(ponctuation);
-    case 2:
-      return choice(['How would I know?', "Don't ask me!",
-        "I don't want to answer your stupid questions"]) + choice(ponctuation);
-    case 3:
-      return choice(["I don't like ", "I'm not a big fan of "]) +
-      choice(andimals) + "and" + choice(animals) + choice(ponctuation);
-  }
+  return choice(["I'm sorry", "I didn't intend to hurt you",
+    "I don't want to be mean"]) + choice(ponctuation);
 }
 
 /**
@@ -202,7 +194,6 @@ function default_answer() {
 * and calls their respective answers (functions patter_1_answer and patter_2_answer )
 * @return {String}
 */
-
 function answer(msg) {
 
   if(matches(msg, pattern_1)) {
