@@ -6,8 +6,8 @@
           is to create a simple artificial conversation between the a human subject and the
           script. The work is inspired by Alan Turing's Imitation Game and Joseph Weizenbaum's
           ELIZA.
-  author: gauthier
-  date:   17/11/16
+  author: Wietske Dotinga
+  date:   22/11/2016
 */
 
 // import express ()
@@ -27,11 +27,18 @@ var chance = require('chance').Chance(); // npm install --save chance
   Answers & Responses
 ------------------------*/
 
-// the two patterns which the script looks for when
+// the patterns which the script looks for when
 // receiving message from the client
 
 const pattern_1 = ['How do you do?', 'Wazzup?'];
 const pattern_2 = ['Why?', 'No', "ok"];
+const patter_3 = ['What should I eat for dinner?', "I don't know what to eat",
+  'Do you have any food suggestions?'];
+
+// arrays of words for the responses
+const ponctuation = ['.', '!'];
+const dishes = ['pasta', 'noodles', 'rice', 'pizza', 'sushi'];
+const vegetables = ['tomatoes', 'broccoli', 'carrots', 'spinach'];
 
 /**
 * Iterates through and array of clauses or words and
@@ -65,7 +72,7 @@ function matches(msg, array_of_patterns) {
 */
 function choice(array) {
 
-  var index = chance.natural({'min': 0, 'max': array.length - 1});  // **** NOTE: 'max': array.length - 1
+  var index = chance.natural({'min': 0, 'max': array.length - 1});
 
   return array[index];
 }
@@ -79,9 +86,12 @@ function choice(array) {
 function maybe(array) {
 
   if( chance.bool() ) {
-
-    return choice(array);
-
+    if (array = vegetables){
+      return ' with ' + choice(array);
+    }
+    else {
+      return choice(array);
+    }
   } else {
 
     return '';
@@ -119,6 +129,10 @@ function patter_2_answer() {
     case 3:
       return choice(['YES', 'Ok', 'Zzzzz']) + choice(ponctuation) + choice(ponctuation) + choice(ponctuation);
   }
+}
+
+function patter_3_answer() {
+  return choice(['Maybe a ', 'Do you like ']) + choice(dishes) + maybe(vegetables);
 }
 
 /**
