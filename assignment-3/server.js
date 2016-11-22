@@ -38,12 +38,16 @@ const pattern_4 = ['Do you know any animals?', 'What are cool animals?',
   'animals'];
 const pattern_5 = ['Why are you so mean?', "Please don't be mean",
   "I don't like you", 'You are rude', 'mean', 'rude'];
+const pattern_6 = ["I love you", "I like you", "You are nice", "love", "like"];
 
 // arrays of words for the responses
 const ponctuation = ['.', '!', '...'];
 const dishes = ['pasta', 'noodles', 'rice', 'pizza', 'sushi'];
 const vegetables = ['tomatoes', 'broccoli', 'carrots', 'spinach'];
-const animals = ['whales', 'tigers', 'axolotl', 'elephants'];
+const animals = ['cats', 'dogs', 'jaguars', 'sloths', 'pandas', 'goldfish',
+  'whales', 'tigers', 'axolotl', 'elephants'];
+const feelings = ['happy', 'special', 'nice', 'honoured'];
+const decision = ['not interested', 'just a robot', 'not sure what to answer'];
 
 /**
 * Iterates through and array of clauses or words and
@@ -107,9 +111,9 @@ function maybe(word, array) {
 * @return {String}
 */
 function patter_1_answer() {
-  return choice(['Hmmm', 'Ah!', '...']) + ' ' + 'I am ' + choice(['feeling', 'doing']) + ' '
-    + choice(['great', 'fabulous', 'cat-like', 'miserable', 'fine', 'confused']) + ' '
-    + choice(ponctuation);
+  return choice(['Hmmm', 'Ah!', '...']) + ' ' + 'I am ' +
+    choice(['feeling', 'doing']) + ' ' + choice(['great', 'fabulous',
+    'cat-like', 'miserable', 'fine', 'confused']) + ' ' + choice(ponctuation);
 }
 
 /**
@@ -123,14 +127,16 @@ function patter_2_answer() {
     case 1:
       return choice(['Please', 'Hmmm', 'Ok']) + " don't be "
         + maybe(['avidly', 'impatiently', 'eagerly', 'anxiously']) + ' '
-        + choice(['superficial', 'mean', 'joyful', 'negative', 'pickled', 'angry'])
-        + choice(ponctuation);
+        + choice(['superficial', 'mean', 'joyful', 'negative', 'pickled',
+        'angry']) + choice(ponctuation);
     case 2:
-      return choice(['I am sorry', 'Excuse me', 'Eh...']) + ' I do ' + choice(['not', 'indeed']) + ' '
-        + choice(['understand', 'share the same worldview as', 'empathise with']) + ' you'
-        + choice(ponctuation);
+      return choice(['I am sorry', 'Excuse me', 'Eh...']) + ' I do ' +
+        choice(['not', 'indeed']) + ' ' + choice(['understand',
+        'share the same worldview as', 'empathise with']) + ' you' +
+        choice(ponctuation);
     case 3:
-      return choice(['YES', 'Ok', 'Zzzzz']) + choice(ponctuation) + choice(ponctuation) + choice(ponctuation);
+      return choice(['YES', 'Ok', 'Zzzzz']) + choice(ponctuation) +
+        choice(ponctuation) + choice(ponctuation);
   }
 }
 
@@ -143,7 +149,7 @@ function patter_3_answer() {
   switch(choice([1, 2])){
     case 1:
       return choice(['Maybe ', 'Do you like ']) + choice(dishes) +
-        maybe(' with ', vegetables) + choice(ponctuation);
+        maybe(' with ', vegetables) + "?";
     case 2:
       return choice(['How would I know?', "Don't ask me!",
         "I don't want to answer your stupid questions."]);
@@ -156,9 +162,9 @@ function patter_3_answer() {
 */
 function patter_4_answer() {
 
-  switch(choice([1, 2])){
+  switch(choice([1, 2, 3])){
     case 1:
-      return choice(['I like ', 'I love ', 'These animals are cool ']) +
+      return choice(['I like ', 'I love ', 'These animals are cool: ']) +
         choice(animals) + maybe(' and ', animals) + maybe(' and ', animals) +
         maybe(' and ', animals) + choice(ponctuation);
     case 2:
@@ -166,7 +172,7 @@ function patter_4_answer() {
         "I don't want to answer your stupid questions."]);
     case 3:
       return choice(["I don't like ", "I'm not a big fan of "]) +
-      choice(andimals) + "and" + choice(animals) + choice(ponctuation);
+      choice(animals) + " and " + choice(animals) + choice(ponctuation);
   }
 }
 
@@ -178,6 +184,21 @@ function patter_5_answer() {
 
   return choice(["I'm sorry", "I didn't intend to hurt you",
     "I don't want to be mean"]) + choice(ponctuation);
+
+}
+
+/**
+* Constructs a randomly generate answer out of two random possibilities
+* @return {String}
+*/
+function patter_6_answer() {
+  switch(choice([1, 2])){
+    case 1:
+      return "That makes me feel " + choice(feelings) + choice(ponctuation);
+    case 2:
+      return "Thank you, but I am " + choice(decision) + choice(ponctuation);
+  }
+
 }
 
 /**
@@ -212,6 +233,10 @@ function answer(msg) {
   } else if(matches(msg, pattern_5)) {
 
     return patter_5_answer();
+
+  } else if(matches(msg, pattern_6)) {
+
+    return patter_6_answer();
 
   } else if(matches(msg, pattern_2)) {
 
@@ -248,7 +273,7 @@ io.on('connection', function(socket) {
 
     console.log('got a human message: ' + msg);
 
-    var response = answer(msg);  	                  /// <--- call of the function answer defined above
+    var response = answer(msg);
 
   	io.emit('message from robot', response);
 
