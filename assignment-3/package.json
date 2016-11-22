@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "gauthier",
+  "author": "Wietske Dotinga",
   "license": "ISC",
   "dependencies": {
     "chance": "^1.0.4",
